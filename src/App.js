@@ -24,11 +24,10 @@ function App() {
   };
 
   const finishTodo = (todo) => {
-    
-    todo.finished = !todo.finished
-    
-    console.log(todos)
-  }
+    todo.finished = !todo.finished;
+
+    console.log(todos);
+  };
 
   return (
     <div className="App">
@@ -43,13 +42,16 @@ function App() {
         <ul>
           {todos &&
             todos.map((todo) => (
-              <li onClick={() => finishTodo(todo)} key={todo.id} >
-                {todo.text} {todo.id} {`${todo.finished}`}
+              <li onClick={() => finishTodo(todo)} key={todo.id}>
+                {todo.text}
                 <button onClick={() => removeTodo(todo.id)}>X</button>{" "}
               </li>
             ))}
         </ul>
       </div>
+      <div>todos bitenler : {todos.map((todo) => (
+        <li key = {todo.id} > {todo.finished ? `${todo.text}` : ""}</li>
+      ))} </div>
 
       <button onClick={() => setTodos([])}>Reset</button>
     </div>
