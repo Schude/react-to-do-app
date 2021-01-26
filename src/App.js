@@ -19,6 +19,16 @@ function App() {
     setTodos([...todos, { id: Date.now(), text: newTodo, finished: false }]);
     setNewTodo("");
   };
+  const removeTodo = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const finishTodo = (todo) => {
+    
+    todo.finished = !todo.finished
+    
+    console.log(todos)
+  }
 
   return (
     <div className="App">
@@ -31,7 +41,13 @@ function App() {
       </form>
       <div className="todo-Container">
         <ul>
-          {todos && todos.map((todo) => <li key={todo.id}>{todo.text} </li>)}
+          {todos &&
+            todos.map((todo) => (
+              <li onClick={() => finishTodo(todo)} key={todo.id} >
+                {todo.text} {todo.id} {`${todo.finished}`}
+                <button onClick={() => removeTodo(todo.id)}>X</button>{" "}
+              </li>
+            ))}
         </ul>
       </div>
 
