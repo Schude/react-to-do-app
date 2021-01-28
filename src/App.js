@@ -20,6 +20,7 @@ function App() {
     setNewTodo("");
   };
   const removeTodo = (id) => {
+
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
@@ -41,17 +42,34 @@ function App() {
       <div className="todo-Container">
         <ul>
           {todos &&
-            todos.map((todo) => (
-              <li onClick={() => finishTodo(todo)} key={todo.id}>
-                {todo.text}
-                <button onClick={() => removeTodo(todo.id)}>X</button>{" "}
-              </li>
-            ))}
+            todos
+              .filter((todo) => todo.finished === false)
+              .map((todo) => (
+                <li
+                  style={todo.finished ? { color: "green" } : { color: "red" }}
+                  onClick={() => finishTodo(todo)}
+                  key={todo.id}
+                >
+                  {todo.text} 
+                  <button onClick={() => removeTodo(todo.id)}>❌</button>
+                </li>
+              ))}
+        </ul>
+        <p> {`bitmeyen Sayısı: ${todos.length}`} </p>
+      </div>
+      <div>
+        todos bitenler :
+        <ul>
+          {todos &&
+            todos
+              .filter((todo) => todo.finished === true)
+              .map((finishedTodo) => (
+                <li key={finishedTodo.id}>
+                  {finishedTodo.text} <button onClick={() => removeTodo(finishedTodo.id)}>❌</button>
+                </li>
+              ))}
         </ul>
       </div>
-      <div>todos bitenler : {todos.map((todo) => (
-        <li key = {todo.id} > {todo.finished ? `${todo.text}` : ""}</li>
-      ))} </div>
 
       <button onClick={() => setTodos([])}>Reset</button>
     </div>
