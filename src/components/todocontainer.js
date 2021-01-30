@@ -11,21 +11,32 @@ const Todocontainer = (props) => {
   };
   return (
     <div className="todos_container">
-      <h2> {!props.value ? "To-Do List": "Finished To-dos"}</h2>
-      <ul className="todo_list" >
+      <h2> {!props.value ? "To-Do List" : "Finished To-dos"}</h2>
+      <ul className="todo_list">
         {props.todos &&
           props.todos
             .filter((todo) => todo.finished === props.value)
 
             .map((todo) => (
-              <li className ="todo_item"
-                style={todo.finished ? { color: "blue" } : { color: "red" }}
+              <li
+                className="todo_item"
+               
                 key={todo.id}
               >
                 {todo.text}
-                <span className = "todo_item_buttons">
-                <button className = "todo_item_button" onClick={() => finishTodo(todo)}>✔</button>
-                <button className = "todo_item_button" onClick={() => removeTodo(todo.id)}>❌</button>
+                <span className="todo_item_buttons">
+                  <button
+                    className="todo_item_button"
+                    onClick={() => finishTodo(todo)}
+                  >
+                    ✔
+                  </button>
+                  <button
+                    className="todo_item_button"
+                    onClick={() => removeTodo(todo.id)}
+                  >
+                    ❌
+                  </button>
                 </span>
               </li>
             ))}
