@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import Form from "./components/form";
 import Todocontainer from "./components/todocontainer";
 import Button from "./components/button";
@@ -24,24 +24,20 @@ function App() {
   };
 
   const finishTodo = (todo) => {
-    console.log(todos);
     todo.finished = !todo.finished;
-    setTodos([...todos])
-    console.log(todos);
-
-    
-    
+    setTodos([...todos]);
   };
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
+      <Form  todos = {todos} setTodos = {setTodos} />
+      {/* <form onSubmit={handleSubmit}>
         <input
           value={newTodo}
           onChange={handleChange}
           placeholder="your Todo"
         ></input>
-      </form>
+      </form> */}
       <div className="todo-Container">
         <ul>
           {todos &&
