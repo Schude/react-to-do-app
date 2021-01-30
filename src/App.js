@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 import Form from "./components/form";
 import Todocontainer from "./components/todocontainer";
 import Button from "./components/button";
@@ -20,14 +20,17 @@ function App() {
     setNewTodo("");
   };
   const removeTodo = (id) => {
-
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const finishTodo = (todo) => {
-    todo.finished = !todo.finished;
-
     console.log(todos);
+    todo.finished = !todo.finished;
+    setTodos([...todos])
+    console.log(todos);
+
+    
+    
   };
 
   return (
@@ -50,12 +53,11 @@ function App() {
                   onClick={() => finishTodo(todo)}
                   key={todo.id}
                 >
-                  {todo.text} 
+                  {todo.text}
                   <button onClick={() => removeTodo(todo.id)}>❌</button>
                 </li>
               ))}
         </ul>
-        <p> {`bitmeyen Sayısı: ${todos.length}`} </p>
       </div>
       <div>
         todos bitenler :
@@ -64,8 +66,14 @@ function App() {
             todos
               .filter((todo) => todo.finished === true)
               .map((finishedTodo) => (
-                <li key={finishedTodo.id}>
-                  {finishedTodo.text} <button onClick={() => removeTodo(finishedTodo.id)}>❌</button>
+                <li
+                  onClick={() => finishTodo(finishedTodo)}
+                  key={finishedTodo.id}
+                >
+                  {finishedTodo.text}{" "}
+                  <button onClick={() => removeTodo(finishedTodo.id)}>
+                    ❌
+                  </button>
                 </li>
               ))}
         </ul>
