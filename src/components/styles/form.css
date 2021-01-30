@@ -1,0 +1,28 @@
+.form {
+    background-color: purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-input{
+    min-width: 300px;
+    background-color: rgb(241, 158, 85);
+    border-radius: 5px;
+    border:none;
+    outline: none;
+    height: 30px;
+    font-size: 20px;
+    color: seagreen;
+    padding:0.2rem;
+    overflow: scroll;
+}
+.form-input::placeholder {
+    font-weight: 400;
+    font-style: italic;
+    color: seagreen;
+    
+}
+.form-input:focus{
+    border:none;
+    outline: none;
+}

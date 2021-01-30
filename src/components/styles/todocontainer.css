@@ -1,0 +1,44 @@
+
+.todos_container{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: seashell;
+    min-width: 480px;
+    margin-top: 1rem;
+}
+.todos_container h2 {
+    margin:0.2rem 0;
+    padding:0.2rem 0;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.todos_container:first-child{
+    background-color: rgb(201, 122, 122);;
+}
+.todos_container:last-child{
+    background-color: skyblue;
+}
+.todo_list{
+    display:flex;
+    flex-flow:column nowrap;
+    justify-content: space-between;
+    margin:0;
+    padding:0;
+}
+
+.todo_item{
+    display: flex;
+    flex-flow:row nowrap;
+    justify-content: space-between;
+    text-decoration: none;
+    background-color: tan;
+    margin-bottom: 0.3rem;
+    padding: 0.1rem 0.3rem;
+    font-weight: 500;
+}
+.todo_item_buttons{
+    border:none;
+    outline: none;
+    
+}

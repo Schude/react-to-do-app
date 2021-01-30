@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "./styles/form.css";
 export default function Form(props) {
   const [newTodo, setNewTodo] = useState("");
   const handleChange = (event) => {
@@ -18,8 +18,8 @@ export default function Form(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <form className ="form" onSubmit={handleSubmit}>
+      <input className = "form-input"
         value={newTodo}
         onChange={handleChange}
         placeholder="your Todo FORM"

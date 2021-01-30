@@ -6,18 +6,13 @@ import "./App.css";
 function App() {
   const [todos, setTodos] = useState([]);
 
-  const removeTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
   return (
-    <div className="App">
+    <div className="wrapper">
       <Form todos={todos} setTodos={setTodos} />
-      <Todocontainer todos={todos} setTodos={setTodos} value= {false} />
-      <Todocontainer todos={todos} setTodos={setTodos} value= {true}/>
-
-
-      <button onClick={() => setTodos([])}>Reset</button>
+      <div className ="todos">
+      <Todocontainer todos={todos} setTodos={setTodos} value={false} />
+      <Todocontainer todos={todos} setTodos={setTodos} value={true} />
+      </div>
     </div>
   );
 }
