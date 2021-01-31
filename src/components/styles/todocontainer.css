@@ -2,33 +2,36 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  background-color: seashell;
-  min-width: 480px;
+  min-width:600px;
   margin-top: 1rem;
-  padding: 0.2rem;
+
   border-radius: 0.2rem;
 
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .todos_container h2 {
   margin: 0;
-  padding: 0;
-  border-bottom: 1px solid black;
-  margin-bottom: 4px;
+  padding: 5px 0;
+  border-radius: 0.2rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: thistle;
+  border-bottom: 2px solid rgb(65, 65, 65);
   text-align: center;
 }
 .todos_container:first-child {
-  background-color: #df7802;
+  background-color: #fda847;
 }
 .todos_container:last-child {
-  background-color: #1a508b;
+  background-color: #357fce;
 }
 .todo_list {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin: 0;
   padding: 0;
+  min-height: 245px;
 }
 
 .todo_item {
@@ -37,9 +40,18 @@
   justify-content: space-between;
   text-decoration: none;
   background-color: #fff3e6;
-  margin-bottom: 0.18rem;
   padding: 0.1rem 0.3rem;
   font-weight: 500;
+}
+.todo_item:nth-child(even) {
+  background-color: #fff3e6;
+}
+.todo_item:nth-child(odd) {
+  background-color: #eed8c0;
+}
+.todo_item:last-child{
+  border-bottom-left-radius:0.2rem ;
+  border-bottom-right-radius: 0.2rem;
 }
 
 .todo_item_button {
