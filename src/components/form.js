@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { database } from "../firebase/FirebaseConfig";
 import "./styles/form.css";
 export default function Form(props) {
   const [newTodo, setNewTodo] = useState("");
@@ -14,12 +15,14 @@ export default function Form(props) {
       ...props.todos,
       { id: Date.now(), text: newTodo, finished: false },
     ]);
+
     setNewTodo("");
   };
 
   return (
-    <form className ="form" onSubmit={handleSubmit}>
-      <input className = "form-input"
+    <form className="form" onSubmit={handleSubmit}>
+      <input
+        className="form-input"
         value={newTodo}
         onChange={handleChange}
         placeholder="your Todo FORM"

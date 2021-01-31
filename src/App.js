@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="wrapper">
       <Header />
-      <SignIn />
-      <SignUp />      
+      {/* <SignIn /> */}
+      {/* <SignUp />       */}
 
 
 
