@@ -1,7 +1,12 @@
-import React from "react";
+import React , {useContext}from "react";
+import {firebaseData} from '../provider/DataProvider'
+import { firebaseAuth } from "../provider/AuthProvider";
+
 import "./styles/todocontainer.css";
 
 const Todocontainer = (props) => {
+
+
   const finishTodo = (todo) => {
     todo.finished = !todo.finished;
     props.setTodos([...props.todos]);
@@ -18,11 +23,7 @@ const Todocontainer = (props) => {
             .filter((todo) => todo.finished === props.value)
 
             .map((todo) => (
-              <li
-                className="todo_item"
-               
-                key={todo.id}
-              >
+              <li className="todo_item" key={todo.id}>
                 {todo.text}
                 <span className="todo_item_buttons">
                   <button

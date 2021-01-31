@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { database, firebaseAuth } from "../../provider/AuthProvider";
+import React, { useContext } from "react";
+import { firebaseAuth } from "../../provider/AuthProvider";
 
 function SignUp() {
   // const [newUser, setNewUser] = useState({});

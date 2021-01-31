@@ -15,16 +15,13 @@ firebase.initializeApp(firebaseConfig);
 
 if (!firebase.apps.length) {
   firebase.initializeApp({});
-}else {
+} else {
   firebase.app(); // if already initialized, use that one
 }
-
-
 
 firebase.auth();
 firebase.firestore();
 
 export default {
-  firebaseConfig, 
-}
-
+  firebaseConfig,
+};

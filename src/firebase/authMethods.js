@@ -39,20 +39,22 @@ export const authMethods = {
   //no need for email and password
   signout: (setErrors, setToken) => {
     // signOut is a no argument function
-  firebase.auth().signOut().then( res => {
-    //remove the token
-    localStorage.removeItem('token')
-      //set the token back to original state
-      setToken(null)
-  })
-  .catch(err => {
-    //there shouldn't every be an error from firebase but just in case
-    setErrors(prev => ([...prev, err.message]))
-    //whether firebase does the trick or not i want my user to do there thing.
-      localStorage.removeItem('token')
-        setToken(null)
-          console.error(err.message)
-  })
+    firebase
+      .auth()
+      .signOut()
+      .then((res) => {
+        //remove the token
+        localStorage.removeItem("token");
+        //set the token back to original state
+        setToken(null);
+      })
+      .catch((err) => {
+        //there shouldn't every be an error from firebase but just in case
+        setErrors((prev) => [...prev, err.message]);
+        //whether firebase does the trick or not i want my user to do there thing.
+        localStorage.removeItem("token");
+        setToken(null);
+        console.error(err.message);
+      });
   },
-}
-
+};

@@ -19,7 +19,6 @@ const AuthProvider = (props) => {
   return (
     <firebaseAuth.Provider
       value={{
-        //replaced test with handleSignup
         handleSignup,
         handleSignin,
         token,

@@ -1,22 +1,21 @@
 import React, { useState, useContext } from "react";
 import { firebaseAuth } from "../provider/AuthProvider";
-
 import Todocontainer from "./todocontainer";
 import Header from "./header";
 import Form from "./form";
+
 const Home = (props) => {
-  const {signout,} = useContext(firebaseAuth)
-  // const [todos, setTodos] = useState([]);
+  const { signout } = useContext(firebaseAuth);
+  const [todos, setTodos] = useState([]);
   return (
     <div>
-      <h1>Home</h1>
-      {/* <Header />
+      <Header />
       <Form todos={todos} setTodos={setTodos} />
       <div className="todos">
         <Todocontainer todos={todos} setTodos={setTodos} value={false} />
         <Todocontainer todos={todos} setTodos={setTodos} value={true} />
-      </div> */}
-        <button onClick={signout}>sign out </button>
+      </div>
+      <button onClick={signout}>sign out </button>
     </div>
   );
 };
