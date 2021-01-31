@@ -1,31 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Router, Switch } from "react-router-dom";
-import Todocontainer from "./components/todocontainer";
-import Header from "./components/header";
-import Form from "./components/form";
 import SignIn from "./components/Auth/SignIn";
 import "./App.css";
 import SignUp from "./components/Auth/SignUp";
+import { firebaseAuth } from "./provider/AuthProvider";
+import Home from "./components/Home";
+
 function App() {
-  const [todos, setTodos] = useState([]);
+  const { token } = useContext(firebaseAuth)
+  console.log(token)
 
   return (
     <div className="wrapper">
-      <Header />
-      {/* <SignIn /> */}
-      {/* <SignUp />       */}
-
-
-
-
-      <Form todos={todos} setTodos={setTodos} />
-      <div className="todos">
-        <Todocontainer todos={todos} setTodos={setTodos} value={false} />
-        <Todocontainer todos={todos} setTodos={setTodos} value={true} />
-      </div>
+      <Switch>
+      <Route exact path='/' render={rProps => token === null ? <SignIn /> : <Home />} />
+        <Route exact path='/signin' component={SignIn} />
+        <Route exact path='/signup' component={SignUp} />
+      </Switch>
     </div>
   );
 }
 
 export default App;
-

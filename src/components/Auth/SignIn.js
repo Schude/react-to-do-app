@@ -1,38 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { database, firebaseAuth } from "../../provider/AuthProvider";
 
-function SignIn () {
-    const [user,setUser] = useState()
+function SignUp() {
+  // const [newUser, setNewUser] = useState({});
+  const { handleSignin, inputs, setInputs, errors } = useContext(firebaseAuth);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSignin();
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputs((prev) => ({ ...prev, [name]: value }));
+  };
 
-   const  handleChange = (event) => {
-        
-        setUser({...user,[event.target.id]: event.target.value})
-        console.log(user)
-    }
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(event.target.value)
-        setUser();
-    }
-  
-    return (
-      <div className="container">
-        <form onSubmit = {handleSubmit}>
-          <h3>Login</h3>
-          <div className="input-field">
-            <label htmlFor="email"> Email</label>
-            <input name="email" type="email" id="email" onChange ={handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="password"> Password</label>
-            <input name="password" type="password" id="password" onChange ={handleChange} />
-          </div>
-          <div>
-            <button type="submit" onClick = {handleSubmit} >Login</button>
-          </div>
-        </form>
-      </div>
-    );
-  
+  return (
+    <form onSubmit={handleSubmit}>
+      SignIN
+      <input
+        onChange={handleChange}
+        type="email"
+        name="email"
+        placeholder="email"
+        value={inputs.email}
+      />
+      <input
+        onChange={handleChange}
+        type="password"
+        name="password"
+        placeholder="password"
+        value={inputs.password}
+      />
+      <button>Sign In</button>
+      {errors.length > 0
+        ? errors.map((error) => <p style={{ color: "red" }}>{error}</p>)
+        : null}
+    </form>
+  );
 }
-export default SignIn;
+export default SignUp;

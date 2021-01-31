@@ -1,63 +1,45 @@
-import React, { useState } from "react";
-import { database } from "../../firebase/FirebaseConfig";
+import React, { useState, useContext } from "react";
+import { database, firebaseAuth } from "../../provider/AuthProvider";
+import { withRouter } from "react-router-dom";
+const SignUp = (props) => {
+  // const [newUser, setNewUser] = useState({});
+  const { handleSignup, inputs, setInputs, errors } = useContext(firebaseAuth);
 
-function SignUp() {
-  const [newUser, setNewUser] = useState({});
-
-  const handleChange = (event) => {
-    setNewUser({ ...newUser, [event.target.id]: event.target.value });
-    console.log(newUser);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //wait to signup
+    await handleSignup();
+    //push home
+    props.history.push("/");
   };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    database
-      .collection("users")
-      .add(newUser)
 
-      .then(function () {
-        alert("Registered.");
-      });
-
-    setNewUser({ username: "", email: "", password: "" });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputs((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <h3>SignUp</h3>
-        <div className="input-field">
-          <label htmlFor="firstName">Username</label>
-          <input
-            value={newUser.username}
-            name="username"
-            type="text"
-            id="username"
-            onChange={handleChange}
-          />
-          <label htmlFor="email"> Email</label>
-          <input
-            value={newUser.email}
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="password"> Password</label>
-          <input
-            value={newUser.password}
-            name="password"
-            type="password"
-            id="password"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <button type="submit">Login</button>
-        </div>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      Sign Up
+      <input
+        type="email"
+        onChange={handleChange}
+        name="email"
+        placeholder="email"
+        value={inputs.email}
+      />
+      <input
+        type="password"
+        onChange={handleChange}
+        name="password"
+        placeholder="password"
+        value={inputs.password}
+      />
+      <button>Sign Up</button>
+      {errors.length > 0
+        ? errors.map((error) => <p style={{ color: "red" }}>{error}</p>)
+        : null}
+    </form>
   );
-}
-export default SignUp;
+};
+export default withRouter(SignUp);

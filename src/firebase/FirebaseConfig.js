@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
@@ -11,7 +12,19 @@ const firebaseConfig = {
   appId: "1:719185808914:web:c2bfb7f830d6b2594812cb",
 };
 firebase.initializeApp(firebaseConfig);
-firebase.firestore().settings({ timestampsInSnapshots: true });
-const database = firebase.firestore();
 
-export {database};
+if (!firebase.apps.length) {
+  firebase.initializeApp({});
+}else {
+  firebase.app(); // if already initialized, use that one
+}
+
+
+
+firebase.auth();
+firebase.firestore();
+
+export default {
+  firebaseConfig, 
+}
+
