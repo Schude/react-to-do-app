@@ -1,29 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import "./styles/form.css";
-import {firestoreMethods} from '../firebase/firestoreMethods'
+import { firebaseData } from "../provider/DataProvider";
 
-function Form(props) {
-
-  const [newTodo, setNewTodo] = useState("");
-  const handleChange = (event) => {
-    event.preventDefault();
-    setNewTodo(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (newTodo === "") return;
-    props.setTodos([
-      ...props.todos,
-      {
-        id: Date.now(),
-        text: newTodo,
-        finished: false,
-      },
-    ]);
-    console.log(props.todos);
-    setNewTodo("");
-  };
+function Form() {
+  const { newTodo, handleChange, handleSubmit } = useContext(firebaseData);
 
   return (
     <form className="form" onSubmit={handleSubmit}>

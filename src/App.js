@@ -15,7 +15,7 @@ function App() {
         <Route
           exact
           path="/"
-          render={(rProps) => (token === null ? <SignIn /> : <Home />)}
+          render={(rProps) => (token !== null ? <SignIn /> : <Home />)}
         />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
