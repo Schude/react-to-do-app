@@ -1,0 +1,27 @@
+.header{
+    display: flex;
+    justify-content: flex-end;
+    flex-flow: row nowrap;
+    background-color: thistle;
+    margin-bottom: 2rem;
+}
+.navbar{
+    display:flex;
+    flex-flow: row nowrap;
+    text-decoration: none;
+    margin: 0 2rem;
+}
+.navbar-nav{
+    display:flex;
+    flex-flow: row nowrap;
+    text-decoration: none;
+    list-style-type: none;
+  
+}
+.navbar-item{
+    margin: 0 1rem;
+    padding:0.4rem;
+    color:rgb(29, 25, 19);
+    cursor:pointer;
+    font-weight: 600;
+}
