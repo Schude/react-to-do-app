@@ -5,11 +5,12 @@ function SignIn () {
 
 
    const  handleChange = (event) => {
-        event.preventDefault();
-        setUser({...user,[event.target.name]: event.target.value})
+        
+        setUser({...user,[event.target.id]: event.target.value})
         console.log(user)
     }
     const handleSubmit = (event) => {
+        event.preventDefault();
         console.log(event.target.value)
         setUser();
     }

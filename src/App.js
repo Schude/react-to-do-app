@@ -5,6 +5,7 @@ import Header from "./components/header";
 import Form from "./components/form";
 import SignIn from "./components/Auth/SignIn";
 import "./App.css";
+import SignUp from "./components/Auth/SignUp";
 function App() {
   const [todos, setTodos] = useState([]);
 
@@ -12,6 +13,8 @@ function App() {
     <div className="wrapper">
       <Header />
       <SignIn />
+      <SignUp />      
+
 
 
 
