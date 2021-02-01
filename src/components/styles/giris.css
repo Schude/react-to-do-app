@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  flex-flow: column nowrap;
+}
+
+.tabs {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  background-color: rgb(143, 22, 22);
+  align-items: center;
+}
+.form-container {
+  display: flex;
+  align-items: flex-start;
+  flex-flow: row nowrap;
+}
+.form {
+  display: flex;
+  flex-flow: column;
+}
+
+.input-field:focus {
+  border: none;
+  outline: none;
+}

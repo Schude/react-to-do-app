@@ -5,17 +5,19 @@ import "./App.css";
 import SignUp from "./components/Auth/SignUp";
 import { firebaseAuth } from "./provider/AuthProvider";
 import Home from "./components/Home";
+import Giris from './components/giris'
 
 function App() {
   const { token } = useContext(firebaseAuth);
 
   return (
     <div className="wrapper">
+    
       <Switch>
         <Route
           exact
           path="/"
-          render={(rProps) => (token !== null ? <SignIn /> : <Home />)}
+          render={(rProps) => (token === null ? <Giris /> : <Home />)}
         />
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />

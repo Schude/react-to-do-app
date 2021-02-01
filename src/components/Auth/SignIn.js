@@ -15,27 +15,30 @@ function SignUp() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      SignIN
-      <input
-        onChange={handleChange}
-        type="email"
-        name="email"
-        placeholder="email"
-        value={inputs.email}
-      />
-      <input
-        onChange={handleChange}
-        type="password"
-        name="password"
-        placeholder="password"
-        value={inputs.password}
-      />
-      <button>Sign In</button>
-      {errors.length > 0
-        ? errors.map((error) => <p style={{ color: "red" }}>{error}</p>)
-        : null}
-    </form>
+    
+      <form onSubmit={handleSubmit} className="form">
+        <input
+          className="input-field"
+          onChange={handleChange}
+          type="email"
+          name="email"
+          placeholder="email"
+          value={inputs.email}
+        />
+        <input
+          className="input-field"
+          onChange={handleChange}
+          type="password"
+          name="password"
+          placeholder="password"
+          value={inputs.password}
+        />
+        <button className="btn">Sign In</button>
+        {errors.length > 0
+          ? errors.map((error) => <p style={{ color: "red" }}>{error}</p>)
+          : null}
+      </form>
+    
   );
 }
 export default SignUp;
