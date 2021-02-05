@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { firebaseAuth } from "../../provider/AuthProvider";
 
 function SignUp() {
-  // const [newUser, setNewUser] = useState({});
-  const { handleSignin, inputs, setInputs, errors } = useContext(firebaseAuth);
+ 
+  const { handleSignin, user, setUser, errors } = useContext(firebaseAuth);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,7 +11,7 @@ function SignUp() {
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInputs((prev) => ({ ...prev, [name]: value }));
+    setUser((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -23,7 +23,7 @@ function SignUp() {
           type="email"
           name="email"
           placeholder="email"
-          value={inputs.email}
+          value={user.email}
         />
         <input
           className="input-field"
@@ -31,7 +31,7 @@ function SignUp() {
           type="password"
           name="password"
           placeholder="password"
-          value={inputs.password}
+          value={user.password}
         />
         <button className="btn">Sign In</button>
         {errors.length > 0

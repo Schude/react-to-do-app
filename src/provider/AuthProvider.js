@@ -2,19 +2,23 @@ import React, { useState } from "react";
 import { authMethods } from "../firebase/authMethods";
 
 const AuthProvider = (props) => {
-  const [inputs, setInputs] = useState({ email: "", password: "" });
-  const [newUser, setNewUser] = useState({username: "", email:"",password:"" })
+  const [user, setUser] = useState({ email: "", password: "" });
+  const [newUser, setNewUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   const [errors, setErrors] = useState([]);
   const [token, setToken] = useState(null);
 
   const handleSignup = () => {
-    authMethods.signup(newUser.email, newUser.password, setErrors, setToken,newUser.username);
+    authMethods.signup(newUser, setErrors, setToken);
   };
   const handleSignin = () => {
-    authMethods.signin(inputs.email, inputs.password, setErrors, setToken);
+    authMethods.signin(user, setErrors, setToken);
   };
   const handleSignout = () => {
-    authMethods.signout(setErrors,setToken);
+    authMethods.signout(setErrors, setToken);
   };
 
   return (
@@ -22,13 +26,14 @@ const AuthProvider = (props) => {
       value={{
         handleSignup,
         handleSignin,
-        token,
-        inputs,
-        setInputs,
-        errors,
         handleSignout,
+        token,
+        user,
+        setUser,
+        errors,
+
         newUser,
-        setNewUser
+        setNewUser,
       }}
     >
       {props.children}

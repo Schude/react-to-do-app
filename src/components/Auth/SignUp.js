@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { firebaseAuth } from "../../provider/AuthProvider";
 import { withRouter } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const SignUp = (props) => {
     //wait to signup
     await handleSignup();
 
-    //push home
+    //push dashbord
     props.history.push("/");
   };
 

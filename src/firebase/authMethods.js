@@ -3,30 +3,28 @@ import Firebaseconfig from "./FirebaseConfig";
 import { dbMethods } from "./dbMethods";
 export const authMethods = {
   // firebase auth helper methods go here...
-  signup: (email, password, setErrors, setToken, username) => {
+  signup: (newUser, setErrors, setToken,) => {
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(newUser.email, newUser.password)
       //make res asynchronous so that we can make grab the token before saving it.
+        
       .then(async (res) => {
+        dbMethods.create(newUser.username, newUser.email, res.user.uid);
         const token = await Object.entries(res.user)[5][1].b;
-        //set token to localStorage
         await localStorage.setItem("token", token);
-        //grab token from local storage and set to state.
         setToken(window.localStorage.token);
-        console.log(res);
-        dbMethods.create(email, username);
       })
 
       .catch((err) => {
         setErrors((prev) => [...prev, err.message]);
       });
   },
-  signin: (email, password, setErrors, setToken) => {
+  signin: (user, setErrors, setToken) => {
     //change from create users to...
     firebase
       .auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(user.email, user.password)
       //everything is almost exactly the same as the function above
       .then(async (res) => {
         const token = await Object.entries(res.user)[5][1].b;
