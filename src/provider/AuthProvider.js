@@ -31,7 +31,6 @@ const AuthProvider = (props) => {
         user,
         setUser,
         errors,
-
         newUser,
         setNewUser,
       }}

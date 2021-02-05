@@ -1,11 +1,17 @@
-import React, { useState } from "react";
-import {dbMethods} from '../firebase/dbMethods'
+import React, { useEffect, useState, useContext } from "react";
+import { dbMethods } from "../firebase/dbMethods";
 import { db } from "../firebase/FirebaseConfig";
+import { firebaseAuth } from "../provider/AuthProvider";
 
 const DataProvider = (props) => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
-
+  const { user } = useContext(firebaseAuth);
+  useEffect(() => {
+    if (todos) {
+      dbMethods.add(user,todos)
+    }
+  }, [user,todos]);
   const handleFinish = (todo) => {
     todo.finished = !todo.finished;
     setTodos([...todos]);
@@ -29,7 +35,8 @@ const DataProvider = (props) => {
         finished: false,
       },
     ]);
-    dbMethods.add(newTodo);
+
+    // dbMethods.add(user, todos);
 
     setNewTodo("");
   };

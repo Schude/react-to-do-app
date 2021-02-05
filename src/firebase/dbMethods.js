@@ -20,12 +20,20 @@ export const dbMethods = {
     });
 
   },
-  add: (todo) => {
-    console.log(todos)
+  add: (uid,newTodo) => {
+    console.log(uid)
+    db.collection("Users").doc(uid).update({
+      
+      todos: newTodo
+  })
+  .then(() => {
+      console.log("Document successfully updated!");
+  });
 
   },
   
-  delete: () => {
+
+  read: () => {
     
 
   },
