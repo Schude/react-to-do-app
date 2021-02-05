@@ -4,6 +4,8 @@ const DataProvider = (props) => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
 
+  
+
   const handleFinish = (todo) => {
     todo.finished = !todo.finished;
     setTodos([...todos]);

@@ -1,9 +1,9 @@
 import firebase from "firebase";
 import Firebaseconfig from "./FirebaseConfig";
-
+import { dbMethods } from "./dbMethods";
 export const authMethods = {
-  // firebase helper methods go here...
-  signup: (email, password, setErrors, setToken) => {
+  // firebase auth helper methods go here...
+  signup: (email, password, setErrors, setToken, username) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -15,7 +15,9 @@ export const authMethods = {
         //grab token from local storage and set to state.
         setToken(window.localStorage.token);
         console.log(res);
+        dbMethods.create(email, username);
       })
+
       .catch((err) => {
         setErrors((prev) => [...prev, err.message]);
       });

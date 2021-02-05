@@ -8,13 +8,13 @@ const AuthProvider = (props) => {
   const [token, setToken] = useState(null);
 
   const handleSignup = () => {
-    authMethods.signup(newUser.email, newUser.password, setErrors, setToken);
+    authMethods.signup(newUser.email, newUser.password, setErrors, setToken,newUser.username);
   };
   const handleSignin = () => {
     authMethods.signin(inputs.email, inputs.password, setErrors, setToken);
   };
   const handleSignout = () => {
-    authMethods.signout();
+    authMethods.signout(setErrors,setToken);
   };
 
   return (
