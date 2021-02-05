@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { authMethods } from "../firebase/authMethods";
 
 const AuthProvider = (props) => {
-  const [user, setUser] = useState({ email: "", password: "" });
+  const [user, setUser] = useState({ email: "", password: "",uid:"" });
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
@@ -15,7 +15,7 @@ const AuthProvider = (props) => {
     authMethods.signup(newUser, setErrors, setToken);
   };
   const handleSignin = () => {
-    authMethods.signin(user, setErrors, setToken);
+    authMethods.signin(user,setUser, setErrors, setToken);
   };
   const handleSignout = () => {
     authMethods.signout(setErrors, setToken);

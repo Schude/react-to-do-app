@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {dbMethods} from '../firebase/dbMethods'
+import { db } from "../firebase/FirebaseConfig";
 
 const DataProvider = (props) => {
   const [todos, setTodos] = useState([]);
@@ -27,6 +29,7 @@ const DataProvider = (props) => {
         finished: false,
       },
     ]);
+    dbMethods.add(newTodo);
 
     setNewTodo("");
   };
