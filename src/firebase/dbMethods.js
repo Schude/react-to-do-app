@@ -20,8 +20,8 @@ export const dbMethods = {
     });
 
   },
-  add: () => {
-    
+  add: (todo) => {
+    console.log(todos)
 
   },
   
