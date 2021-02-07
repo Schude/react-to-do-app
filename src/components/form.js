@@ -6,14 +6,14 @@ function Form() {
   const { newTodo, handleChange, handleSubmit } = useContext(firebaseData);
 
   return (
-    <form className="form" onSubmit={ handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}>
       <input
         className="form-input"
         value={newTodo}
         onChange={handleChange}
         placeholder="your Todo FORM"
       ></input>
-      <button type="submit"> Add </button>
+      <button type="submit">Add Login</button>
     </form>
   );
 }

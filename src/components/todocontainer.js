@@ -6,7 +6,9 @@ import "./styles/todocontainer.css";
 
 const Todocontainer = (props) => {
   const { todos, handleFinish, removeTodo } = useContext(firebaseData);
-  const {handleSignout} = useContext(firebaseAuth)
+  const { handleSignout } = useContext(firebaseAuth);
+
+  console.log({ deneme: todos });
   return (
     <div className="todos_container">
       <h2> {!props.value ? "To-Do List" : "Finished To-dos"}</h2>
@@ -34,7 +36,7 @@ const Todocontainer = (props) => {
               </li>
             ))}
       </ul>
-      <button onClick = {handleSignout}> Sign OUT</button>
+      <button onClick={handleSignout}> Sign OUT</button>
     </div>
   );
 };
