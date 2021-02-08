@@ -1,16 +1,15 @@
 import { db } from "../firebase/FirebaseConfig";
-import firebase from 'firebase'
+import firebase from "firebase";
 
 export const dbMethods = {
   // firebase store helper methods go here...
 
   create: (username, email, uid) => {
-    db.collection("Users")
-      .doc(uid)
+    db.collection(uid)
+      .doc("user")
       .set({
         username: username,
         email: email,
-        todos: [],
         uid: uid,
       })
       .then(() => {
@@ -21,29 +20,33 @@ export const dbMethods = {
       });
   },
   add: (uid, newTodo) => {
-    db.collection("Users")
-      .doc(uid)
-      .update({
-        todos: firebase.firestore.FieldValue.arrayUnion(newTodo)
+    db.collection(uid)
+      .doc(newTodo.id)
+      .set({
+        id: newTodo.id,
+        text: newTodo.text,
+        value: newTodo.finished,
       })
       .then(() => {
         console.log("Document successfully updated!");
       });
   },
 
-  read: (uid) => {
+  get: (uid) => {
     var docRef = db.collection("Users").doc("deneme");
 
-    docRef.get().then((doc) => {
+    docRef
+      .get()
+      .then((doc) => {
         if (doc.exists) {
-           return doc.data().deneme;
+          return doc.data().deneme;
         } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
         }
-    }).catch((error) => {
+      })
+      .catch((error) => {
         console.log("Error getting document:", error);
-    });
-
+      });
   },
 };
