@@ -6,25 +6,27 @@ import shortid from "shortid";
 const DataProvider = (props) => {
   const { user } = useContext(firebaseAuth);
   const [todos, setTodos] = useState([]);
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
   const [newTodo, setNewTodo] = useState("");
 
   useEffect(() => {
-  
-    getTodos()
-    
+    getTodos();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleFinish = (todo) => {
     todo.finished = !todo.finished;
     setTodos([...todos]);
+    db.collection(user).doc(todo.id).update({
+      finished: true,
+    });
   };
 
-  async function  getTodos() {
-    const snapshot = await db.collection(user).get()
-    setTodos (snapshot.docs.map(doc => doc.data()));
-    console.log(todos)
+  async function getTodos() {
+    const snapshot = await db.collection(user).get();
+    setTodos(snapshot.docs.map((doc) => doc.data()));
+    console.log(todos);
   }
 
   const removeTodo = (id) => {
