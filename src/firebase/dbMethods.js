@@ -20,33 +20,33 @@ export const dbMethods = {
       });
   },
   add: (uid, newTodo) => {
-    db.collection(uid)
-      .doc(newTodo.id)
-      .set({
-        id: newTodo.id,
-        text: newTodo.text,
-        finished: newTodo.finished,
-      })
-      .then(() => {
-        console.log("Document successfully updated!");
-      });
+    db.collection(uid).doc(newTodo.id).set({
+      id: newTodo.id,
+      text: newTodo.text,
+      finished: newTodo.finished,
+    });
   },
 
   get: (uid) => {
-    var docRef = db.collection("Users").doc("deneme");
 
-    docRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          return doc.data().deneme;
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
+  },
+  remove: (uid,todoID) => {
+    db.collection(uid)
+      .doc(todoID)
+      .delete()
+      .then(() => {
+        console.log("Document successfully deleted!");
       })
       .catch((error) => {
-        console.log("Error getting document:", error);
+        console.error("Error removing document: ", error);
       });
+
   },
+  update: (uid,todo) => {
+    db.collection(uid).doc(todo.id).update({
+      finished: !todo.finished,
+    });
+  }
+
+ 
 };
