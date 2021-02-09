@@ -25,7 +25,7 @@ export const dbMethods = {
       .set({
         id: newTodo.id,
         text: newTodo.text,
-        value: newTodo.finished,
+        finished: newTodo.finished,
       })
       .then(() => {
         console.log("Document successfully updated!");
