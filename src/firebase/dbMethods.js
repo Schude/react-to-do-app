@@ -1,5 +1,4 @@
 import { db } from "../firebase/FirebaseConfig";
-import firebase from "firebase";
 
 export const dbMethods = {
   // firebase store helper methods go here...

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { dbMethods } from "../firebase/dbMethods";
 import { db } from "../firebase/FirebaseConfig";
 import { firebaseAuth } from "../provider/AuthProvider";
@@ -6,26 +6,19 @@ import shortid from "shortid";
 const DataProvider = (props) => {
   const { user } = useContext(firebaseAuth);
   const [todos, setTodos] = useState([]);
-  const [data, setData] = useState([]);
   const [newTodo, setNewTodo] = useState("");
-
-
+  useEffect(() => {
+    getTodos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  });
+  //sonsuz render problemi
   async function getTodos() {
     const snapshot = await db.collection(user).get();
     setTodos(snapshot.docs.map((doc) => doc.data()));
   }
 
   const removeTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-    db.collection(user)
-      .doc(id)
-      .delete()
-      .then(() => {
-        console.log("Document successfully deleted!");
-      })
-      .catch((error) => {
-        console.error("Error removing document: ", error);
-      });
+    dbMethods.remove(user, id);
   };
 
   const handleChange = (event) => {
@@ -36,21 +29,15 @@ const DataProvider = (props) => {
     event.preventDefault();
     if (newTodo === "") return;
     const todo = { id: shortid.generate(), text: newTodo, finished: false };
-    setTodos([...todos, todo]);
     dbMethods.add(user, todo);
-    event.preventDefault();
-
     setNewTodo("");
     getTodos();
   };
-  
-  const handleFinish = (todo) => {
-    todo.finished = !todo.finished;
-    setTodos([...todos]);
-    db.collection(user).doc(todo.id).update({
-      finished: todo.finished,
-    });
-  };
+
+  async function handleFinish(todo) {
+    dbMethods.update(user, todo);
+    await getTodos();
+  }
 
   return (
     <firebaseData.Provider
@@ -64,8 +51,6 @@ const DataProvider = (props) => {
         handleFinish,
         removeTodo,
         value: false,
-        data,
-        setData,
         getTodos,
       }}
     >

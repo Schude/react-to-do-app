@@ -1,17 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { firebaseData } from "../provider/DataProvider";
 import { firebaseAuth } from "../provider/AuthProvider";
 
 import "./styles/todocontainer.css";
 
 const Todocontainer = (props) => {
-  const { todos, handleFinish, removeTodo,getTodos } = useContext(firebaseData);
+  const { handleFinish, removeTodo, todos } = useContext(firebaseData);
   const { handleSignout } = useContext(firebaseAuth);
-  useEffect(() => {
-    getTodos();
-    
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+
+  // console.log("rendering");
   return (
     <div className="todos_container">
       <h2> {!props.value ? "To-Do List" : "Finished To-dos"}</h2>
