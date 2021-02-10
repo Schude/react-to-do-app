@@ -17,6 +17,7 @@ const DataProvider = (props) => {
   async function getTodos() {
     const snapshot = await db.collection(user).get();
     setTodos(snapshot.docs.map((doc) => doc.data()));
+    
   }
 
   const removeTodo = (id) => {

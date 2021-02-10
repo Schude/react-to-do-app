@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { firebaseData } from "../provider/DataProvider";
 import { firebaseAuth } from "../provider/AuthProvider";
 
 import "./styles/todocontainer.css";
 
 const Todocontainer = (props) => {
-  const { handleFinish, removeTodo, todos,getTodos } = useContext(firebaseData);
+  const { handleFinish, removeTodo, todos } = useContext(firebaseData);
   const { handleSignout } = useContext(firebaseAuth);
 
  
@@ -25,7 +25,6 @@ const Todocontainer = (props) => {
                   <button
                     className="todo_item_button"
                     onClick={() => handleFinish(todo)}
-                    // onClick = {() => finish(todo)}
                   >
                     ✔
                   </button>

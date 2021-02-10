@@ -7,6 +7,9 @@ import { firebaseAuth } from "./provider/AuthProvider";
 import Home from "./components/Home";
 import Giris from './components/giris'
 
+import LogRocket from 'logrocket';
+LogRocket.init('rzlq9o/test');
+
 function App() {
   const { token } = useContext(firebaseAuth);
 

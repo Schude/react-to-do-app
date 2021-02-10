@@ -1,5 +1,4 @@
 import firebase from "firebase";
-import Firebaseconfig from "./FirebaseConfig";
 import { dbMethods } from "./dbMethods";
 export const authMethods = {
   // firebase auth helper methods go here...

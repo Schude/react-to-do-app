@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { firebaseAuth } from "../../provider/AuthProvider";
 
-function SignUp() {
+function SignIn() {
  
   const { handleSignin, user, setUser, errors } = useContext(firebaseAuth);
 
@@ -41,4 +41,4 @@ function SignUp() {
     
   );
 }
-export default SignUp;
+export default SignIn;

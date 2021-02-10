@@ -2,7 +2,7 @@ import React from "react";
 import SignIn from "./Auth/SignIn";
 import SignUp from "./Auth/SignUp";
 import "./styles/giris.css";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 export default function Giris() {
   return (
