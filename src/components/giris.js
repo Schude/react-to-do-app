@@ -17,10 +17,7 @@ export default function Giris() {
           render={() => (
             <div>
               <SignIn />
-              <Link to="/signup">
-                {" "}
-                <p>SignUp</p>
-              </Link>
+              <SignUp/>
             </div>
           )}
         ></Route>

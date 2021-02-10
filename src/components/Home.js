@@ -12,6 +12,7 @@ const Home = () => {
           <Todocontainer value={false} />
           <Todocontainer value={true} />
         </div>
+        
       </DataProvider>
     </div>
   );

@@ -7,11 +7,13 @@ const DataProvider = (props) => {
   const { user } = useContext(firebaseAuth);
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+
   useEffect(() => {
     getTodos();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   });
-  //sonsuz render problemi
+  //sonsuz render problemi veya geç update etme
   async function getTodos() {
     const snapshot = await db.collection(user).get();
     setTodos(snapshot.docs.map((doc) => doc.data()));
@@ -27,17 +29,16 @@ const DataProvider = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     if (newTodo === "") return;
     const todo = { id: shortid.generate(), text: newTodo, finished: false };
     dbMethods.add(user, todo);
     setNewTodo("");
-    getTodos();
   };
 
-  async function handleFinish(todo) {
+  const handleFinish = (todo) => {
     dbMethods.update(user, todo);
-    await getTodos();
-  }
+  };
 
   return (
     <firebaseData.Provider

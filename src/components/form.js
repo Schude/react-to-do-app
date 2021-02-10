@@ -5,6 +5,8 @@ import { firebaseData } from "../provider/DataProvider";
 function Form() {
   const { newTodo, handleChange, handleSubmit } = useContext(firebaseData);
 
+
+
   return (
     <form className="form" onSubmit={handleSubmit}>
       <input

@@ -1,14 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { firebaseData } from "../provider/DataProvider";
 import { firebaseAuth } from "../provider/AuthProvider";
 
 import "./styles/todocontainer.css";
 
 const Todocontainer = (props) => {
-  const { handleFinish, removeTodo, todos } = useContext(firebaseData);
+  const { handleFinish, removeTodo, todos,getTodos } = useContext(firebaseData);
   const { handleSignout } = useContext(firebaseAuth);
 
-  // console.log("rendering");
+ 
+
+  console.log("render");
   return (
     <div className="todos_container">
       <h2> {!props.value ? "To-Do List" : "Finished To-dos"}</h2>
@@ -23,6 +25,7 @@ const Todocontainer = (props) => {
                   <button
                     className="todo_item_button"
                     onClick={() => handleFinish(todo)}
+                    // onClick = {() => finish(todo)}
                   >
                     ✔
                   </button>
@@ -37,6 +40,7 @@ const Todocontainer = (props) => {
             ))}
       </ul>
       <button onClick={handleSignout}> Sign OUT</button>
+      {/* <button onClick= {updateDB(todos)}> SAVE YOUR TODOS</button> */}
     </div>
   );
 };
