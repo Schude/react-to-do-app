@@ -26,10 +26,8 @@ export const dbMethods = {
     });
   },
 
-  get: (uid) => {
-
-  },
-  remove: (uid,todoID) => {
+  get: (uid) => {},
+  remove: (uid, todoID) => {
     db.collection(uid)
       .doc(todoID)
       .delete()
@@ -39,13 +37,10 @@ export const dbMethods = {
       .catch((error) => {
         console.error("Error removing document: ", error);
       });
-
   },
-  update: (uid,todo) => {
+  update: (uid, todo) => {
     db.collection(uid).doc(todo.id).update({
-      finished: !todo.finished,
+      finished: todo.finished,
     });
-  }
-
- 
+  },
 };

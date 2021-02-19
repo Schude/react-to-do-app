@@ -1,16 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { firebaseData } from "../provider/DataProvider";
 import { firebaseAuth } from "../provider/AuthProvider";
-
 import "./styles/todocontainer.css";
 
 const Todocontainer = (props) => {
-  const { handleFinish, removeTodo, todos } = useContext(firebaseData);
+  const { handleFinish, setTodos, removeTodo, todos, dbData } = useContext(
+    firebaseData
+  );
   const { handleSignout } = useContext(firebaseAuth);
+  useEffect(() => {
+    setTodos(dbData);
 
- 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dbData]);
 
-  console.log("render");
   return (
     <div className="todos_container">
       <h2> {!props.value ? "To-Do List" : "Finished To-dos"}</h2>
@@ -39,7 +42,6 @@ const Todocontainer = (props) => {
             ))}
       </ul>
       <button onClick={handleSignout}> Sign OUT</button>
-      {/* <button onClick= {updateDB(todos)}> SAVE YOUR TODOS</button> */}
     </div>
   );
 };
