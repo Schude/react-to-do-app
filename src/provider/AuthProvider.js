@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { authMethods } from "../firebase/authMethods";
 
 const AuthProvider = (props) => {
-  const [user, setUser] = useState({ email: "", password: "",uid:"" });
+  const [user, setUser] = useState({ email: "", password: "" });
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",

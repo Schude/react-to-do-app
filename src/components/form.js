@@ -15,7 +15,7 @@ function Form() {
         onChange={handleChange}
         placeholder="your Todo FORM"
       ></input>
-      <button type="submit">Add Login</button>
+      <button type="submit">Submit</button>
     </form>
   );
 }

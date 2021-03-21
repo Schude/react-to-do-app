@@ -27,7 +27,6 @@ export const authMethods = {
       //everything is almost exactly the same as the function above
       .then(async (res) => {
         setUser((user.uid = res.user.uid));
-
         const token = await Object.entries(res.user)[5][1].b;
         //set token to localStorage
         await localStorage.setItem("token", token);

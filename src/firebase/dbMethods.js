@@ -26,7 +26,9 @@ export const dbMethods = {
     });
   },
 
-  get: (uid) => {},
+  get: (uid) => {
+
+  },
   remove: (uid, todoID) => {
     db.collection(uid)
       .doc(todoID)
